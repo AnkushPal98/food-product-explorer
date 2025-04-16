@@ -3,7 +3,7 @@ const ProductCard = ({ product }) => {
     return (
       <div className="border rounded-lg overflow-hidden hover:shadow-md transition-shadow hover:cursor-pointer hover:border-3 hover:border-sky-500 dark:hover:border-gray-400 bg-white dark:bg-gray-800 shadow-sm h-full flex flex-col border-gray-200 dark:border-gray-700">
         <Link to={`/product/${product.id}`}>
-          <img src={product.image_url} alt={product.product_name} className="w-full h-48 object-contain my-[20px]"/>
+          <img src={product.image_url} alt={product.product_name} className="w-full h-48 object-contain p-4"/>
         </Link>
         <div className="p-4">
           <h3 className="font-semibold text-lg mb-1 line-clamp-2 text-gray-800 dark:text-gray-100">
