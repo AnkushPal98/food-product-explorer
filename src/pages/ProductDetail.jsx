@@ -20,7 +20,7 @@ const ProductDetail = () => {
     if (!product) return <div>Product not found</div>;
 
     return (
-      <div className="max-w-4xl mx-auto p-4">
+      <div className="max-w-4xl mx-auto my-[2%] p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
         <div className="grid md:grid-cols-2 gap-8">
           <div>
             <img

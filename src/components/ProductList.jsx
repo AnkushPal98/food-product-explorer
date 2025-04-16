@@ -127,7 +127,7 @@ const ProductList = ({ searchTerm, filters, sortOption }) => {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1 || isFetching}
-            className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+            className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
             Previous
           </button>
@@ -140,7 +140,7 @@ const ProductList = ({ searchTerm, filters, sortOption }) => {
                 className={`px-3 py-1 rounded ${
                   currentPage === 1
                     ? "bg-blue-500 text-white"
-                    : "border border-gray-300 hover:bg-gray-100"
+                    : "border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 } disabled:opacity-50`}
               >
                 1
@@ -157,7 +157,7 @@ const ProductList = ({ searchTerm, filters, sortOption }) => {
               className={`px-3 py-1 rounded ${
                 currentPage === page
                   ? "bg-blue-500 text-white"
-                  : "border border-gray-300 hover:bg-gray-100"
+                  : "border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
               } disabled:opacity-50`}
             >
               {page}
@@ -173,7 +173,7 @@ const ProductList = ({ searchTerm, filters, sortOption }) => {
                 className={`px-3 py-1 rounded ${
                   currentPage === totalPages
                     ? "bg-blue-500 text-white"
-                    : "border border-gray-300 hover:bg-gray-100"
+                    : "border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
                 } disabled:opacity-50`}
               >
                 {totalPages}
@@ -184,7 +184,7 @@ const ProductList = ({ searchTerm, filters, sortOption }) => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages || isFetching}
-            className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+            className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           >
             Next
           </button>

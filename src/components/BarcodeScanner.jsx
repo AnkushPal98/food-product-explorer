@@ -39,7 +39,7 @@ const BarcodeScanner = () => {
           placeholder="Enter barcode"
           value={barcode}
           onChange={(e) => setBarcode(e.target.value)}
-          className="my-[10px] w-full p-2 border rounded-lg"
+          className="my-[10px] w-full p-2 border rounded-lg dark:bg-gray-800 dark:text-white dark:border-gray-700 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:border-gray-500"
         />
         {error && <div className="text-red-500">{error}</div>}
         {isLoading && <Spinner />}

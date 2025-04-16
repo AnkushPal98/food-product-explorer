@@ -20,6 +20,8 @@ import {
   Typography,
 } from "antd";
 import { FilterOutlined } from "@ant-design/icons";
+import { ThemeProvider } from "./context/ThemeContext";
+import Header from "./components/Header";
 const { Title } = Typography;
 const { Panel } = Collapse;
 // Create a query client
@@ -57,123 +59,133 @@ function App() {
             <AdvancedFilters filters={filters} setFilters={setFilters} />
           </Panel>
           <Panel header="Sort By" key="sort_by">
-            <SortDropdown sortOption={sortOption} setSortOption={setSortOption} />
+            <SortDropdown
+              sortOption={sortOption}
+              setSortOption={setSortOption}
+            />
           </Panel>
-          
         </Collapse>
       </Form>
     </>
   );
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="App">
-          <header className="bg-blue-600 text-white p-4">
-            <h1 className="text-2xl font-bold">Food Product Explorer</h1>
-          </header>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Row style={{ margin: "16px" }}>
-                    <Col
-                      lg={6}
-                      xl={6}
-                      md={12}
-                      sm={18}
-                      style={{ display: "flex", justifyContent: "start" }}
-                    >
-                      <Title level={3} style={{marginTop: "13px", color: "grey"}}>View Products</Title> 
-                    </Col>
-                    <Col
-                      xl={18}
-                      lg={18}
-                      md={20}
-                      sm={24}
-                      style={{ display: "flex", justifyContent: "end" }}
-                    >
-                      <Space>
-                        <div style={{ marginRight: "10px" }}>
-                          <SearchBar onSearch={setSearchTerm} />
-                        </div>
-                        <div style={{ marginRight: "10px" }}>
-                          <Tooltip title="Filters">
-                            <Popover
-                              style={{ marginRight: "10px" }}
-                              placement="bottomLeft"
-                              title={
-                                <div>
-                                  <Row style={{ display: "flex" }}>
-                                    {" "}
-                                    <Col span={10} style={{ marginTop: "4px" }}>
-                                      Filter
-                                    </Col>{" "}
-                                    <Col
-                                      span={14}
-                                      style={{
-                                        color: "#31A6C7",
-                                        textAlign: "end",
-                                      }}
-                                    >
-                                      <Button
-                                        type="link"
-                                        onClick={() => resetFilters()}
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <div className="App">
+            <Header />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Row style={{ margin: "16px" }}>
+                      <Col
+                        lg={6}
+                        xl={6}
+                        md={12}
+                        sm={18}
+                        style={{ display: "flex", justifyContent: "start" }}
+                      >
+                        <Title
+                          level={3}
+                          style={{ marginTop: "13px", color: "grey" }}
+                        >
+                          View Products
+                        </Title>
+                      </Col>
+                      <Col
+                        xl={18}
+                        lg={18}
+                        md={20}
+                        sm={24}
+                        style={{ display: "flex", justifyContent: "end" }}
+                      >
+                        <Space>
+                          <div style={{ marginRight: "10px" }}>
+                            <SearchBar onSearch={setSearchTerm} />
+                          </div>
+                          <div style={{ marginRight: "10px" }}>
+                            <Tooltip title="Filters">
+                              <Popover
+                                style={{ marginRight: "10px"}}
+                                placement="bottomLeft"
+                                title={
+                                  <div>
+                                    <Row style={{ display: "flex" }}>
+                                      {" "}
+                                      <Col
+                                        span={10}
+                                        style={{ marginTop: "4px" }}
                                       >
-                                        Reset
-                                      </Button>
-                                    </Col>
-                                  </Row>
-                                </div>
-                              }
-                              content={FilterBox}
-                              trigger="hover"
-                              onOpenChange={() =>
-                                !closeFilter
-                                  ? setCloseFilter(true)
-                                  : setCloseFilter(false)
-                              }
-                              open={closeFilter}
-                            >
-                              <Button
-                                style={{
-                                  textAlign: "center",
-                                  alignContent: "center",
-                                  border: 0,
-                                  borderRadius: "5px",
-                                  backgroundColor: "grey",
-                                  color: "white",
-                                }}
+                                        Filter
+                                      </Col>{" "}
+                                      <Col
+                                        span={14}
+                                        style={{
+                                          color: "#31A6C7",
+                                          textAlign: "end",
+                                        }}
+                                      >
+                                        <Button
+                                          type="link"
+                                          onClick={() => resetFilters()}
+                                        >
+                                          Reset
+                                        </Button>
+                                      </Col>
+                                    </Row>
+                                  </div>
+                                }
+                                content={FilterBox}
+                                trigger="hover"
+                                onOpenChange={() =>
+                                  !closeFilter
+                                    ? setCloseFilter(true)
+                                    : setCloseFilter(false)
+                                }
+                                open={closeFilter}
                               >
-                               <FilterOutlined /> Filter
-                              </Button>
-                            </Popover>
-                          </Tooltip>
-                        </div>
-                      </Space>
-                    </Col>
-                  </Row>
+                                <Button
+                                  style={{
+                                    textAlign: "center",
+                                    alignContent: "center",
+                                    border: 0,
+                                    borderRadius: "5px",
+                                    backgroundColor: "grey",
+                                    color: "white",
+                                  }}
+                                >
+                                  <FilterOutlined /> Filter
+                                </Button>
+                              </Popover>
+                            </Tooltip>
+                          </div>
+                        </Space>
+                      </Col>
+                    </Row>
 
-                  <div style={{ margin: "0px 16px 10px" }}>
-                          <BarcodeScanner />
-                        </div>
-                  <ProductList
-                    searchTerm={searchTerm}
-                    filters={filters}
-                    sortOption={sortOption}
-                  />
-                </>
-              }
-            />
-            <Route path="/product/:id" element={<ProductDetail />} />
-          </Routes>
+                    <div style={{ margin: "0px 16px 10px" }}>
+                      <BarcodeScanner />
+                    </div>
+                    <ProductList
+                      searchTerm={searchTerm}
+                      filters={filters}
+                      sortOption={sortOption}
+                    />
+                  </>
+                }
+              />
+              <Route path="/product/:id" element={<ProductDetail />} />
+            </Routes>
 
-          <footer className="bg-gray-100 p-4 text-center">
-            <p>Powered by OpenFoodFacts API</p>
-          </footer>
-        </div>
-      </Router>
-    </QueryClientProvider>
+            <footer className="bg-blue-200 dark:bg-gray-700 p-4 text-center">
+              <p>Powered by OpenFoodFacts API</p>
+            </footer>
+          </div>
+        </Router>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
